@@ -1,0 +1,2 @@
+use('API_PICTURE');
+db.details.drop();

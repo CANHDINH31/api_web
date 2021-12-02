@@ -1,0 +1,19 @@
+use('API_PICTURE');
+// db.menus.drop();
+db.menus.insertMany([
+  {"name":"Hoa Sen","image":"/img/HoaSen/hs1.jpg","code":"hoasen","description":"Giải mã chi tiết nhất về ý nghĩa của tranh hoa sen"},
+  {"name":"Phố Cổ Hà Nội","image":"/img/PhoCoHaNoi/pc1.jpg","code":"phocohanoi","description":"Tranh phố cổ Hà Nội nét đẹp hoài cổ cho không gian sống"},
+  {"name":"Phong Cảnh Châu Âu","image":"/img/PhongCanhChauAu/ca1.jpg","code":"phongcanhchauau","description":"Vùng đất Châu Âu nổi tiếng với những cảnh đẹp lung linh, tráng lệ, luôn khiến bất kì ai cũng thổn thức, say mê.."},
+  {"name":"Tranh Dán Tường","image":"/img/TranhDanTuong/dt1.jpg","code":"tranhdantuong","description":"Tranh 3d dán tường điểm nhấn của sự tinh tế và sáng tạo"},
+  {"name":"Tranh Đồng Quê" ,"image":"/img/TranhDongQue/dq1.jpg","code":"tranhdongque","description":"Trang đồng quê  mang hồn quê đến với không gian sống"},
+  {"name":"Tranh Hoa" ,"image":"/img/TranhHoa/th1.jpg","code":"tranhhoa","description":"Một bức tranh hoa đẹp luôn là ý nghĩ đầu tiên cho những ai đang tìm một bức tranh treo tường, các loài hoa cũng luôn là đề tài bất tận và tràn đầy cảm hứng để các họa sĩ sáng tác"},
+  {"name":"Tranh Nhà Hàng" ,"image":"/img/TranhNhaHang/nh1.jpg","code":"tranhnhahang","description":"Những lưu ý khi chọn tranh khách sạn cho từng khu vực"},
+  {"name":"Tranh Phong Cảnh" ,"image":"/img/TranhPhongCanh/pc1.jpg","code":"tranhphongcanh","description":"Làm mới không gian nhà ở với những kiểu tranh phong cảnh"},
+  {"name":"Tranh Phong Thủy" ,"image":"/img/TranhPhongThuy/pt1.jpg","code":"tranhphongthuy","description":"Phong thủy là mỗi quan tâm hàng đầu trong trang trí nhà cửa. Mục tiêu của chúng tôi là mang lại cho bạn những bức tranh phong thủy đẹp, hài hòa giữa khoa học phong thủy và nghệ thuật trang trí."},
+  {"name":"Tranh Thiếu Nữ" ,"image":"/img/TranhThieuNu/tn1.jpg","code":"tranhtinhvat","description":"Tranh sơn dầu thiếu nữ bao gồm tranh cô gái Việt Nam và nước ngoài. Các bức tranh sơn dầu phong cách gợi cảm."},
+  {"name":"Tranh Tĩnh Vật" ,"image":"/img/TranhTinhVat/tv1.jpg","code":"tranhthieunu","description":"Tranh tĩnh vật luôn mang đến vẻ đẹp âm thầm cho không gian của bạn"},
+  {"name":"Tranh Trang Trí" ,"image":"/img/TranhTrangTri/tt1.jpg","code":"tranhtrangtri","description":"Lựa chọn tranh treo tường trang trí nhà đẹp tại đây"},
+
+]);
+
+

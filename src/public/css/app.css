@@ -1,0 +1,127 @@
+* {
+  box-sizing: inherit; }
+
+html {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none; }
+
+.header {
+  min-height: 40px;
+  padding: 0; }
+
+.footer {
+  font-size: 1.2rem;
+  color: #fff !important; }
+
+.home_img {
+  object-fit: contain; }
+
+.active {
+  background: #f05123 !important; }
+
+.wrapper {
+  background: url("/img/Background/background.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  background-repeat: no-repeat; }
+
+.library_link {
+  display: block;
+  object-fit: contain;
+  width: 99%;
+  padding: 2px;
+  border-radius: 36px;
+  overflow: hidden;
+  border: 2px solid #fff; }
+
+.library_link:hover {
+  animation: libraryLinkHover linear 0.3s; }
+
+@keyframes libraryLinkHover {
+  from {
+    opacity: 1s; }
+  to {
+    opacity: 0.8;
+    transform: scale(1.1); } }
+
+.form {
+  background-color: #fff;
+  width: 30%;
+  height: 60%;
+  padding: 40px 40px;
+  opacity: 0.95;
+  border-radius: 20px;
+  box-shadow: 2px 2px rgba(53, 53, 53, 0.4); }
+
+.table {
+  width: 90%;
+  background-color: #fff;
+  padding: 40px 40px;
+  opacity: 0.98;
+  border-radius: 20px;
+  box-shadow: 2px 2px rgba(53, 53, 53, 0.4); }
+
+.table_image {
+  display: block;
+  width: 120px;
+  border-radius: 10px;
+  border: 1px solid #353535; }
+
+.table_image:hover {
+  transform: scale(3); }
+
+.table_button {
+  text-decoration: none;
+  color: #fff; }
+
+.table_button:hover {
+  text-decoration: none; }
+
+.product {
+  padding: 0;
+  opacity: 0.98;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+  min-height: 298px;
+  border: 2px solid rgba(0, 255, 127, 0.2);
+  border-radius: 10px; }
+
+.product_img {
+  display: block;
+  max-height: 116px;
+  transition: all linear .3s; }
+
+.product_img:hover {
+  transform: scale(1.3); }
+
+.product_text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  line-height: 1.5rem;
+  /* fallback */
+  max-height: 3.0rem; }
+
+@media (max-width: 739px) {
+  .app {
+    overflow: hidden; }
+  .hide-on-mobile {
+    display: none; }
+  .footer {
+    font-size: 1rem; }
+  .home_img {
+    object-fit: cover;
+    min-height: 100vh; }
+  .product_img {
+    transform: scale(1.3); } }

@@ -1,0 +1,36 @@
+<div class="wrapper d-flex justify-content-center">
+
+    <table class="table mt-5">
+
+        <thead>
+            <tr>
+                <th colspan="5">
+                    <h1 class="d-flex justify-content-center">Table API Category</h1>
+                </th>
+            </tr>
+            <tr class="thead-dark">
+                <th scope="col">STT</th>
+                <th scope="col">Code</th>
+                <th scope="col">Category</th>
+                <th scope="col">Image</th>
+                <th scope="col" colspan="2">Setting</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each apicategory}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.code}}</td>
+                <td>{{this.name}}</td>
+                <td><img class="table_image" src="{{this.image}}" alt=""></td>
+                <td>
+                    <button type="button" class="btn btn-success"><a class="table_button"
+                            href="/update/apicategory/{{this._id}}">Update</a></button>
+                    <button type="button" class="btn btn-danger"><a class="table_button"
+                            href="/delete/apicategory/{{this._id}}">Delete</a></button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

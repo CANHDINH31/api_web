@@ -1,0 +1,7 @@
+use('API_PICTURE');
+// db.admins.drop();
+db.admins.insertMany([
+  {"username":"dinhphamcanh","password":"f0cb0b0c4c290e0dde267987ed96d6c0"},
+]);
+
+

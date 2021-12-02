@@ -1,0 +1,30 @@
+<div class="wrapper d-flex justify-content-center align-self-center">
+    <form class="form mt-5" action="/update/apicategory/{{apicategory.0._id}}?_method=PUT" method="POST">
+        <h2 class="d-flex justify-content-center">Update API Category</h2>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name"  name="name" required
+            value="{{apicategory.0.name}}"
+                >
+        </div>
+        <div class="form-group">
+            <label for="code">Code:</label>
+            <input type="text" class="form-control" id="code"  name="code" required
+            value="{{apicategory.0.code}}"
+                >
+        </div>
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="text" class="form-control" id="image" name="image" required
+                value= "{{apicategory.0.image}}"
+                >
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" required
+                value= "{{apicategory.0.description}}"
+                >
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
