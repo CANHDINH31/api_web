@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-dotenv.config()
+
 export const connect = async function(){
 
     try{
-        await mongoose.connect(process.env.URL_DATABASE,{
+        await mongoose.connect('mongodb+srv://dinhphamcanh:dinhphamcanh400@cluster0.of6s6.mongodb.net/API_PICTURE?retryWrites=true&w=majority',{
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
