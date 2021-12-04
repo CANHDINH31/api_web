@@ -166,6 +166,12 @@ overflow: hidden;
     .product_img{
         transform: scale(1.3);
     }
+    .form-mb{
+        min-width: 320px;
+    }
+    .form-mb h3 {
+        font-size: $fontBig;
+    }
 
 }
 

@@ -125,7 +125,11 @@ a:hover {
     object-fit: cover;
     min-height: 100vh; }
   .product_img {
-    transform: scale(1.3); } }
+    transform: scale(1.3); }
+  .form-mb {
+    min-width: 320px; }
+  .form-mb h3 {
+    font-size: 1.5rem; } }
 
 .include {
   padding: 40px 0;
