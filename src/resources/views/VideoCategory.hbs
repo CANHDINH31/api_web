@@ -1,0 +1,75 @@
+<div class="include">
+    <div class="container">
+       <form class="form-inline my-2 my-lg-0 d-flex justify-content-end" method="post" action="/videostore/search">
+            <input style="background-color: transparent; color:#fff;" class="form-control mr-sm-2" type="search"
+                placeholder="Search video" aria-label="Search" name="search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="video_navbar-list mt-4">
+        </div>
+        <div class="wrapper_video_category">
+            <div class="video_category-title_wrap">
+                <div class="video_category-title">
+                    Hiển thị {{count}} Video
+                </div>
+            </div>
+            <div class="row video_category">
+                {{#each data}}
+                <div class="col col-6 col-xl-3 video_category-product mt-4">
+                    <img src="https://img.youtube.com/vi/{{this.videoid}}/0.jpg" class="video_category-product_link"
+                        alt="">
+
+                    <embed src="/img/icon/play.svg" class="video_category-product_icon" />
+                    <span class="video_category-product_name">{{this.name}}</span>
+                    <a href="/videostore/{{this.param}}/{{this.videoid}}" class="video_category-product_href"></a>
+
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // xoa dau
+    function removeAccents(str) {
+        var AccentsMap = [
+            "aàảãáạăằẳẵắặâầẩẫấậ",
+            "AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ",
+            "dđ", "DĐ",
+            "eèẻẽéẹêềểễếệ",
+            "EÈẺẼÉẸÊỀỂỄẾỆ",
+            "iìỉĩíị",
+            "IÌỈĨÍỊ",
+            "oòỏõóọôồổỗốộơờởỡớợ",
+            "OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ",
+            "uùủũúụưừửữứự",
+            "UÙỦŨÚỤƯỪỬỮỨỰ",
+            "yỳỷỹýỵ",
+            "YỲỶỸÝỴ"
+        ];
+        for (var i = 0; i < AccentsMap.length; i++) {
+            var re = new RegExp('[' + AccentsMap[i].substr(1) + ']', 'g');
+            var char = AccentsMap[i][0];
+            str = str.replace(re, char);
+        }
+         return str.split(' ').join('').toLowerCase();
+        
+    }
+    const array = {{{ listtype }}}
+    const newarray = array.map(data => {
+        return data.type
+    })
+    const arraytype = [...(new Set(newarray))]
+    const arrparam = arraytype.map(data => {
+        return removeAccents(data)
+    })
+    const videoNavbarList = document.querySelector('.video_navbar-list')
+    const htmlElement = arraytype.map((data,index)=>{
+        return `<div class="video_navbar-item">
+                <a href="/videostore/${arrparam[index]}">${data}</a>
+            </div>`
+    }).join('')
+    videoNavbarList.innerHTML=htmlElement
+
+</script>

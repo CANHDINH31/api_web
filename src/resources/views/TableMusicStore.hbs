@@ -1,0 +1,29 @@
+<div class="wrapper d-flex justify-content-center">
+
+    <table class="table mt-5">
+
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <h1 class="d-flex justify-content-center">Table Music Store</h1>
+                </th>
+            </tr>
+            <tr class="thead-dark">
+                <th scope="col">STT</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Music</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each musics}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.code}}</td>
+                <td>{{this.name}}</td>
+                <td><a href="{{this.path}}" target="_blank">Test</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,30 @@
+<div class="include">
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-end" method="post" action="/videostore/search">
+            <input style="background-color: transparent; color:#fff;" class="form-control mr-sm-2" type="search"
+                placeholder="Search video" aria-label="Search" name="search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="wrapper_video_category">
+            <div class="video_category-title_wrap">
+                <div class="video_category-title">
+                    Hiển thị {{count}} video
+                </div>
+            </div>
+            <div class="row video_category">
+                {{#each data}} 
+                <div class="col col-6 col-xl-3 video_category-product mt-4">
+                    <img src="https://img.youtube.com/vi/{{this.videoid}}/0.jpg" class="video_category-product_link"
+                            alt="">
+
+                    <embed src="/img/icon/play.svg" class="video_category-product_icon" />
+                    <span class="video_category-product_name">{{this.name}}</span>
+                    <a style="color:#ff8a00" href="/videostore/{{this.param}}/{{this.videoid}}" class="video_category-product_href"></a>
+
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { index,
         RenderCategory, 
         ApiCategoryJson,
         ApiDetailsJson ,
+        ApiMusicJson,
         createApiDetails,
         createApiCategory,
         SaveApiDetailsCreate,
@@ -16,7 +17,13 @@ import { index,
         DeleteApiCategory,
         MyProducts,
         Login,
-        CheckLogin
+        CheckLogin,
+        MusicStore,
+        VideoStore,
+        VideoDetail,
+        VideoCategory,
+        VideoSearch,
+        ApiVideoJson
     } from '../app/controllers/Controller.js'
 import bodyParser from 'body-parser'
 
@@ -25,11 +32,22 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 function route(app){
     app.get('/',index)
 
+    app.get('/musicstore',MusicStore)
+    app.get('/videostore',Login,VideoStore)
+    app.post('/videostore/search',Login,VideoSearch)
+    app.get('/videostore/:category',Login,VideoCategory)
+    app.get('/videostore/:param/:videoid',Login,VideoDetail)
+
+
+
     app.get('/tableapidetail',Login,TableApiDetail)
     app.get('/tableapicategory',Login,TableApiCategory)
 
     app.get('/apidetailsjson',ApiDetailsJson)
     app.get('/apicategoryjson',ApiCategoryJson)
+    app.get('/apimusicjson',ApiMusicJson)
+    app.get('/apivideojson',Login,ApiVideoJson)
+
 
     app.get('/createApiDetails',Login,createApiDetails)
     app.get('/createApiCategory',Login,createApiCategory)
@@ -46,13 +64,12 @@ function route(app){
     app.get('/delete/apidetail/:id',Login,DeleteApiDetail)
     app.get('/delete/apicategory/:id',Login,DeleteApiCategory)
 
-
     app.get('/:category',RenderCategory)
+
 
     app.post('/login',CheckLogin)
     app.post('/store/ApiDetails',Login,SaveApiDetailsCreate)
     app.post('/store/ApiCategory',Login,SaveApiCategoryCreate)
-
 
 }
 

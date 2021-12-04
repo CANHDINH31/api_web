@@ -2,6 +2,8 @@ import MenuModel from "../models/Menu.js"
 import DetailModel from "../models/Detail.js"
 import ProductModel from "../models/Product.js"
 import AdminModel from "../models/Administrator.js"
+import MusicModel from "../models/Music.js"
+import VideoModel from "../models/Video.js"
 
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
@@ -41,6 +43,15 @@ export const ApiCategoryJson = (req, res, next) => {
         .then(
             (apicategoryjson) => {
                 res.json(apicategoryjson)
+            }
+        )
+        .catch(next)
+}
+export const ApiMusicJson = (req, res, next) => {
+    MusicModel.find({})
+        .then(
+            (musics) => {
+                res.json(musics)
             }
         )
         .catch(next)
@@ -176,49 +187,152 @@ export const MyProducts = (req, res, next) => {
 
 export const Login = (req, res, next) => {
 
-        if(req.cookies.token){
-            const token = jwt.verify(req.cookies.token,'dinhphamcanh');
-            if(token){
-                next();
-            }else{
-              res.render('Login')
-                
-            }
-        }
-        else{
+    if (req.cookies.token) {
+        const token = jwt.verify(req.cookies.token, 'dinhphamcanh');
+        if (token) {
+            next();
+        } else {
             res.render('Login')
+
         }
-        
+    }
+    else {
+        res.render('Login')
+    }
+
 
 }
 
 export const CheckLogin = (req, res, next) => {
-        const { username, password } = req.body;
-        const hashedPassword = md5(password);
+    const { username, password } = req.body;
+    const hashedPassword = md5(password);
 
 
-        AdminModel.findOne({
-            username: username,
-            password: hashedPassword
-        })
-            .then(
-                data => {
-                    if (data._id) {
-                        const token = jwt.sign({ foo: data._id }, 'dinhphamcanh')
-                        res.cookie('token', token,
-                            {
-                                expires: new Date(Date.now() + 900000)
-                            })
-                        res.redirect('back')
-                    }
-                }
-            )
-            .catch(
-                error => {
+    AdminModel.findOne({
+        username: username,
+        password: hashedPassword
+    })
+        .then(
+            data => {
+                if (data._id) {
+                    const token = jwt.sign({ foo: data._id }, 'dinhphamcanh')
+                    res.cookie('token', token,
+                        {
+                            expires: new Date(Date.now() + 900000)
+                        })
                     res.redirect('back')
                 }
-            )
+            }
+        )
+        .catch(
+            error => {
+                res.redirect('back')
+            }
+        )
 
+}
+
+export const MusicStore = (req, res, next) => {
+    MusicModel.find({}).lean()
+        .then(
+            musics => {
+                res.render('TableMusicStore', {
+                    musics
+                })
+
+            }
+        )
+        .catch(next)
+}
+
+export const VideoStore = (req, res, next) => {
+    Promise.all([VideoModel.find({ param: 'nhactrung' }).skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'nhacviet' }).skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'nhacquocte' }).skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'tuyenvietnam' }).skip(0).limit(8).lean(),
+    ])
+        .then(([nhactrung, nhacviet, nhacquocte, vietnam]) => {
+            res.render('VideoStore', {
+                nhactrung,
+                nhacviet,
+                nhacquocte,
+                vietnam
+            })
+            // res.json(nhactrung)
+
+        })
+        .catch(next)
+
+}
+
+export const VideoDetail = (req, res, next) => {
+    const { param, videoid } = req.params;
+    Promise.all([VideoModel.find({ param: param, videoid: videoid }).lean(),
+    VideoModel.find({ param: param }).lean(),
+    VideoModel.find({}).select('type')
+    ])
+        .then(
+            ([videodetail, listvideodetail, listtype]) => {
+                res.render('VideoDetail', {
+                    videodetail,
+                    listvideodetail,
+                    listtype: JSON.stringify(listtype)
+                })
+            }
+        )
+        .catch(next)
+
+
+}
+
+export const VideoCategory = (req, res, next) => {
+    const { category } = req.params;
+    Promise.all([
+        VideoModel.find({ param: category }).lean(),
+        VideoModel.find({}).select('type'),
+        VideoModel.countDocuments({ param: category })
+    ])
+        .then(
+            ([data, listtype, count]) => {
+                res.render('VideoCategory', {
+                    data,
+                    listtype: JSON.stringify(listtype),
+                    count
+                })
+            }
+        )
+        .catch()
+}
+
+export const VideoSearch = (req, res, next) => {
+    const string = (req.body.search).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').replace(/y/g, 'i');
+    VideoModel.find({}).lean()
+        .then(
+            results => {
+                results.map(result => { result.type = result.type.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').replace(/y/g, 'i') });
+                results.map(result => { result.name = result.name.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').replace(/y/g, 'i') });
+                results=results.filter(result => {return result.name.includes(string) || result.type.includes(string)});
+                const videoid = [];
+                results.map(result =>{videoid.push(result.videoid)});
+                Promise.all([VideoModel.find({videoid:{$in:videoid}}).lean(),VideoModel.countDocuments({videoid:{$in:videoid}})])
+                .then(([data, count]) => res.render('VideoSearch',{
+                   data,
+                   count
+                }))
+                .catch(next)
+            })
+        .catch(next)
+
+}
+
+export const ApiVideoJson = (req,res,next) => {
+    VideoModel.find({})
+     .then(
+        data => {
+            res.json(data)
+        }
+     )
+     .catch(next)
 }
 
 export default index
