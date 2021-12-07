@@ -23,7 +23,8 @@ import { index,
         VideoDetail,
         VideoCategory,
         VideoSearch,
-        ApiVideoJson
+        ApiVideoJson,
+        MathDetail
     } from '../app/controllers/Controller.js'
 import bodyParser from 'body-parser'
 
@@ -32,6 +33,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 function route(app){
     app.get('/',index)
 
+    app.get('/mathdetail',Login,MathDetail)
     app.get('/musicstore',MusicStore)
     app.get('/videostore',Login,VideoStore)
     app.post('/videostore/search',Login,VideoSearch)

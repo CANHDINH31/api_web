@@ -4,6 +4,7 @@ import ProductModel from "../models/Product.js"
 import AdminModel from "../models/Administrator.js"
 import MusicModel from "../models/Music.js"
 import VideoModel from "../models/Video.js"
+import MathModel from "../models/Math.js"
 
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
@@ -333,6 +334,17 @@ export const ApiVideoJson = (req,res,next) => {
         }
      )
      .catch(next)
+}
+
+export const MathDetail = (req,res,next) =>{
+    MathModel.find({}).lean()
+        .then(
+            data => {
+                res.render('MathDetail',{data})        
+            }
+        )
+        .catch(next)
+    
 }
 
 export default index
