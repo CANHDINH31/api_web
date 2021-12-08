@@ -219,13 +219,16 @@ a:hover {
   background-color: transparent; }
 
 .video_navbar-list {
-  display: flex; }
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto; }
 
 .video_navbar-item {
   background-color: #504d49;
   padding: 2px 10px;
   margin-right: 6px;
-  transition: all linear 0.3s; }
+  transition: all linear 0.3s;
+  flex-shrink: 0; }
 
 .video_navbar-item a {
   color: #fff;
