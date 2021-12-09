@@ -247,10 +247,10 @@ export const MusicStore = (req, res, next) => {
 }
 
 export const VideoStore = (req, res, next) => {
-    Promise.all([VideoModel.find({ param: 'nhactrung' }).skip(0).limit(8).lean(),
-    VideoModel.find({ param: 'nhacviet' }).skip(0).limit(8).lean(),
-    VideoModel.find({ param: 'nhacquocte' }).skip(0).limit(8).lean(),
-    VideoModel.find({ param: 'tuyenvietnam' }).skip(0).limit(8).lean(),
+    Promise.all([VideoModel.find({ param: 'nhactrung' }).sort('name').skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'nhacviet' }).sort('name').skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'nhacquocte' }).sort('name').skip(0).limit(8).lean(),
+    VideoModel.find({ param: 'tuyenvietnam' }).sort('name').skip(0).limit(8).lean(),
     ])
         .then(([nhactrung, nhacviet, nhacquocte, vietnam]) => {
             res.render('VideoStore', {
@@ -267,9 +267,9 @@ export const VideoStore = (req, res, next) => {
 }
 
 export const VideoDetail = (req, res, next) => {
-    const { param, videoid } = req.params;
-    Promise.all([VideoModel.find({ param: param, videoid: videoid }).lean(),
-    VideoModel.find({ param: param }).lean(),
+    const { param, id } = req.params;
+    Promise.all([VideoModel.find({ param: param, _id: id }).sort('name').lean(),
+    VideoModel.find({ param: param }).sort('name').lean(),
     VideoModel.find({}).select('type')
     ])
         .then(
@@ -279,6 +279,7 @@ export const VideoDetail = (req, res, next) => {
                     listvideodetail,
                     listtype: JSON.stringify(listtype)
                 })
+               
             }
         )
         .catch(next)
@@ -289,7 +290,7 @@ export const VideoDetail = (req, res, next) => {
 export const VideoCategory = (req, res, next) => {
     const { category } = req.params;
     Promise.all([
-        VideoModel.find({ param: category }).lean(),
+        VideoModel.find({ param: category }).sort('name').lean(),
         VideoModel.find({}).select('type'),
         VideoModel.countDocuments({ param: category })
     ])
@@ -307,7 +308,7 @@ export const VideoCategory = (req, res, next) => {
 
 export const VideoSearch = (req, res, next) => {
     const string = (req.body.search).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').replace(/y/g, 'i');
-    VideoModel.find({}).lean()
+    VideoModel.find({}).sort('name').lean()
         .then(
             results => {
                 results.map(result => { result.type = result.type.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').replace(/y/g, 'i') });
@@ -315,7 +316,7 @@ export const VideoSearch = (req, res, next) => {
                 results=results.filter(result => {return result.name.includes(string) || result.type.includes(string)});
                 const videoid = [];
                 results.map(result =>{videoid.push(result.videoid)});
-                Promise.all([VideoModel.find({videoid:{$in:videoid}}).lean(),VideoModel.countDocuments({videoid:{$in:videoid}})])
+                Promise.all([VideoModel.find({videoid:{$in:videoid}}).sort('name').lean(),VideoModel.countDocuments({videoid:{$in:videoid}})])
                 .then(([data, count]) => res.render('VideoSearch',{
                    data,
                    count

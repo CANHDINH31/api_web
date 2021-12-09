@@ -38,7 +38,7 @@ function route(app){
     app.get('/videostore',Login,VideoStore)
     app.post('/videostore/search',Login,VideoSearch)
     app.get('/videostore/:category',Login,VideoCategory)
-    app.get('/videostore/:param/:videoid',Login,VideoDetail)
+    app.get('/videostore/:param/:id',Login,VideoDetail)
 
 
 
