@@ -337,10 +337,11 @@ export const ApiVideoJson = (req,res,next) => {
 }
 
 export const MathDetail = (req,res,next) =>{
-    MathModel.find({}).lean()
+    MathModel.find({}).sort('name').lean()
         .then(
             data => {
-                res.render('MathDetail',{data})        
+                res.render('MathDetail',{data})  
+                // res.send(data)
             }
         )
         .catch(next)
