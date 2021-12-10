@@ -234,7 +234,7 @@ export const CheckLogin = (req, res, next) => {
 }
 
 export const MusicStore = (req, res, next) => {
-    MusicModel.find({}).lean()
+    MusicModel.find({}).sort({code:1,name:1}).lean()
         .then(
             musics => {
                 res.render('TableMusicStore', {

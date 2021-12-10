@@ -208,6 +208,14 @@ overflow: hidden;
     width: 100%;
 }
 
+.video_title{
+    background-color: #504d49;
+    color: $white;
+    display: inline-block;
+    font-size: $fontMed;
+    padding: 4px 6px;
+}
+
 .wrapper_video_category{
     margin-top: 60px;
     border-top:1px solid #fff;
