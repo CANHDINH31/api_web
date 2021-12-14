@@ -36,7 +36,7 @@
 
             <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
             <span style="margin-top: 20px;">Sound: </span>
-            <input id="volume" class="volume" type="range" value="0" step="1" min="0" max="100">
+            <input id="volume" class="volume" type="range" value="50" step="1" min="0" max="100">
 
             <audio id="audio" src="">
             </audio>
@@ -126,14 +126,13 @@
             if(_this.isPlaying){
                 audio.pause(); 
             }else {  
-                audio.play();  
-                audio.volume= 0.5;           
+                audio.play();           
             }
             
         }
 
         audio.onplay = function(){
-           volume.value = this.volume * 100;
+           this.volume = volume.value / 100;
             _this.isPlaying=true;
             player.classList.add('playing')
             cdThumbAnimate.play();
@@ -155,7 +154,8 @@
             audio.currentTime = seekTime;
         }
         volume.onchange = function(e){
-                audio.volume = e.target.value/100;
+               volValue = e.target.value/100;
+               audio.volume = volValue;
         }
         nextBtn.onclick = function(){
             if(_this.isRanDom){
