@@ -8,7 +8,8 @@ const Schema = mongoose.Schema;
 const Music = new Schema({
     code:{type:String,required:true},
     path:{type:String,required: true},
-    name:{type:String,required:true}
+    name:{type:String,required:true},
+    image:{type:String,required:true},
   }, {
     timestamps: { createdAt: 'created_at',
                   updatedAt: 'update_at'
