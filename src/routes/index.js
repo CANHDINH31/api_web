@@ -35,10 +35,10 @@ function route(app){
 
     app.get('/mathdetail',Login,MathDetail)
     app.get('/musicstore',MusicStore)
-    app.get('/videostore',Login,VideoStore)
-    app.post('/videostore/search',Login,VideoSearch)
-    app.get('/videostore/:category',Login,VideoCategory)
-    app.get('/videostore/:param/:id',Login,VideoDetail)
+    app.get('/videostore',VideoStore)
+    app.post('/videostore/search',VideoSearch)
+    app.get('/videostore/:category',VideoCategory)
+    app.get('/videostore/:param/:id',VideoDetail)
 
 
 
