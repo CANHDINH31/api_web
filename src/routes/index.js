@@ -1,6 +1,7 @@
 import { index, 
         RenderCategory, 
         ApiCategoryJson,
+        ApiDetailsPageJson,
         ApiDetailsJson ,
         ApiMusicJson,
         createApiDetails,
@@ -47,6 +48,8 @@ function route(app){
 
     app.get('/apidetailsjson',ApiDetailsJson)
     app.get('/apicategoryjson',ApiCategoryJson)
+    app.get('/apidetailsjson/:page',ApiDetailsPageJson)
+
     app.get('/apimusicjson',ApiMusicJson)
     app.get('/apivideojson',Login,ApiVideoJson)
 
