@@ -39,6 +39,21 @@ export const ApiDetailsJson = (req, res, next) => {
         .catch(next)
 }
 
+export const ApiDetailsPageJson = (req, res, next) => {
+    var page = req.params.page;
+    page = parseInt(page);
+    var skip = (page-1)*16;
+    DetailModel.find({})
+        .skip(skip)
+        .limit(16)
+        .then(
+            (apicategoryjson) => {
+                res.json(apicategoryjson)
+            }
+        )
+        .catch(next)
+}
+
 export const ApiCategoryJson = (req, res, next) => {
     MenuModel.find({})
         .then(
