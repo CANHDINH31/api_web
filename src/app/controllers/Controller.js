@@ -63,6 +63,17 @@ export const ApiCategoryJson = (req, res, next) => {
         )
         .catch(next)
 }
+
+export const ApiCategoryParamJson = (req, res, next) => {
+    const params = req.params.params;
+    MenuModel.find({code:params})
+        .then(
+            (apicategoryjson) => {
+                res.json(apicategoryjson)
+            }
+        )
+        .catch(next)
+}
 export const ApiMusicJson = (req, res, next) => {
     MusicModel.find({})
         .then(
