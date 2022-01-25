@@ -40,8 +40,7 @@ export const ApiDetailsJson = (req, res, next) => {
 }
 
 export const ApiDetailsPageJson = (req, res, next) => {
-    var page = req.params.page;
-    page = parseInt(page);
+    const [type,page] = req.params.type.split("-");
     var skip = (page-1)*16;
     DetailModel.find({})
         .skip(skip)
