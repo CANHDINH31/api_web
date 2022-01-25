@@ -54,6 +54,17 @@ export const ApiDetailsPageJson = (req, res, next) => {
         .catch(next)
 }
 
+export const ApiDetailsTypeJson = (req, res, next) => {
+    var type = req.params.type;
+    DetailModel.find({code:type})
+        .then(
+            (apicategoryjson) => {
+                res.json(apicategoryjson)
+            }
+        )
+        .catch(next)
+}
+
 export const ApiCategoryJson = (req, res, next) => {
     MenuModel.find({})
         .then(
