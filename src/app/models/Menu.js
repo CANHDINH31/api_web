@@ -6,6 +6,7 @@ const Menu = new Schema({
     image:{type:String,required: true},
     description:{type:String,required: true},
     code:{type:String,required: true},
+    datail:{type:String,required: true},
   }, {
     timestamps: true,
   });
