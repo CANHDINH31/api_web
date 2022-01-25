@@ -56,7 +56,13 @@ export const ApiDetailsPageJson = (req, res, next) => {
 
 export const ApiDetailsTypeJson = (req, res, next) => {
     var type = req.params.type;
+    var page = req.params.page;
+    page = parseInt(page);
+    var skip = (page-1)*20;
+
     DetailModel.find({code:type})
+        .skip(skip)
+        .limit(16)
         .then(
             (apicategoryjson) => {
                 res.json(apicategoryjson)
