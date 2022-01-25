@@ -53,7 +53,7 @@ function route(app){
 
     app.get('/apicategoryjson',ApiCategoryJson)
     app.get('/apidetailsjson/:page',ApiDetailsPageJson)
-    app.get('/apijson/:type',ApiDetailsTypeJson)
+    app.get('/apijson/:type/:page',ApiDetailsTypeJson)
 
 
     app.get('/apimusicjson',ApiMusicJson)
