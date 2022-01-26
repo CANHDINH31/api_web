@@ -28,6 +28,17 @@ export const RenderCategory = (req, res, next) => {
         .catch(next)
 }
 
+export const Detailinfo = (req, res, next) => {
+    const {id}  = req.params;
+    DetailModel.find({_id:id})
+        .then(
+            (apidetailsjson) => {
+                res.json(apidetailsjson)
+            }
+        )
+        .catch(next)
+}
+
 export const ApiDetailsJson = (req, res, next) => {
     const apidetailsjson = req.params.apidetailsjson;
     DetailModel.find({})

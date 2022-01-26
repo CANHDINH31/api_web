@@ -9,6 +9,9 @@ const Detail = new Schema({
     code:{type:String,required: true},
     image:{type:String,required: true},
     name:{type:String,required:true},
+    category:{type:String,required:true},
+    price:{type:String,required:true},
+    author:{type:String,required:true},
   }, {
     timestamps: { createdAt: 'created_at',
                   updatedAt: 'update_at'

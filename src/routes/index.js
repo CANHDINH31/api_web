@@ -1,5 +1,6 @@
 import { index, 
         RenderCategory, 
+        Detailinfo,
         ApiCategoryJson,
         ApiCategoryParamJson,
         ApiDetailsPageJson,
@@ -47,6 +48,8 @@ function route(app){
 
     app.get('/tableapidetail',Login,TableApiDetail)
     app.get('/tableapicategory',Login,TableApiCategory)
+
+    app.get('/detailinfo/:id',Detailinfo)
 
     app.get('/apidetailsjson',ApiDetailsJson)
     app.get('/apicategoryjson/:params',ApiCategoryParamJson)
