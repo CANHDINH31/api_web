@@ -7,7 +7,6 @@ import cookieParser from 'cookie-parser'
 import route  from './routes/index.js';
 import { connect } from './config/db/index.js';
 
-import cors from 'cors';
 
 //connect db
 connect();
@@ -26,8 +25,6 @@ app.use(methodOverride('_method'))
 
 app.use(cookieParser())
 
-app.use(cors());
-app.options('*', cors());
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
