@@ -1,11 +1,12 @@
 use('API_PICTURE');
-// db.products.drop();
+db.products.drop();
 db.products.insertMany([
-  {"title":"API Picture","link":"https://apipicture.herokuapp.com/","image":"/img/products/apipicture.PNG","description":"provide library and api picture"},
+  {"title":"API Picture","link":"https://apipcd.herokuapp.com/","image":"/img/products/apipicture.PNG","description":"provide library and api picture"},
   {"title":"Happy Birthday", "link":"https://canhdinh31.github.io/happybirthday/","image":"/img/products/birthday.PNG","description":"happy birthday website"},
   { "title":"Online Study","link":"https://onlinestudy.herokuapp.com/","image":"/img/products/onlinestudy.PNG","description":"Website includes free, quality online courses"},
   { "title":"Courses Free","link":"http://pcdcourses.somee.com/","image":"/img/products/pcdcourses.PNG","description":"You can find documents in many different fields here"},
   {"title":"About Film" ,"link":"https://dinhphamcanh.netlify.app/","image":"/img/products/reactapp.PNG","description":"Website providing information about directors and characters of blockbuster movies"},
+  {"title":"Mỹ thuật Đông Anh","link":"https://canhdinh31.netlify.app/","image":"/img/products/mythuatdonganh.PNG","description":"Many beautiful pictures for your choice"},
 ]);
 
 
